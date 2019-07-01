@@ -4,6 +4,14 @@ import { action } from "@storybook/addon-actions";
 //import { linkTo } from "@storybook/addon-links";
 
 import SortPanel from "../components/SortPanel.vue";
+import Header from "../components/Header.vue";
+
+storiesOf("Header", module)
+.add("simple", () => ({
+    components: { Header },
+    template: '<Header />',
+    methods: { onClick: action("clicked") }
+}))
 
 storiesOf("SortPanel", module)
 .add("with result 4", () => ({

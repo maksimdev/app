@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header msg="MESSAGE!"/>
+    <Header />
     <SortPanel result="7" />
   </div>
 </template>

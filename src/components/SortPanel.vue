@@ -4,7 +4,8 @@
     <div>
       <span class="sortBy">sort by</span>
       <a class="button left active" @click="onClick">release date</a>
-      <a class="button right" @click="onClick">raiting</a></div>
+      <a class="button right" @click="onClick">raiting</a>
+    </div>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
 
 <style scoped lang="scss">
 .SortPanel {
+  min-width: 565px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,7 +40,7 @@ export default {
 }
 .button {
   cursor: pointer;
-  background: #555555;
+  background: #555;
   padding: 0.6em 1.2em;
 }
 .right {
@@ -52,7 +54,7 @@ export default {
   background: #ff6f6f;
 }
 a {
-  color: #ffffff;
+  color: #fff;
 }
 .sortBy {
   margin-right: 1em;
