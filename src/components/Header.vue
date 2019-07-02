@@ -2,7 +2,7 @@
   <div class="header">
     <h1>find your movie</h1>
     <div class="searchPanel">
-      <input v-model="message" placeholder="Quentin Tarantino">
+      <input v-model="message" placeholder="Quentin Tarantino" />
       <a class="searchButton" @click="search">search</a>
     </div>
     <div>
@@ -17,14 +17,14 @@
 export default {
   name: "Header",
   data: () => ({
-    message: ''
+    message: ""
   }),
   methods: {
     search() {
-      console.log('click search!', this);
+      console.log("click search!", this);
     },
     onClick() {
-      console.log('click!', this);
+      console.log("click!", this);
     }
   }
 };
@@ -43,7 +43,7 @@ h1 {
   font-size: 1.2em;
   cursor: pointer;
   background: #555;
-  padding: 1.0em 0em;
+  padding: 1em 0em;
   width: 18%;
   text-align: center;
   background: #ff6f6f;
@@ -57,7 +57,7 @@ input {
   background: #6e6e6e;
   transparent: 0.1;
   width: 80%;
-  border:none;
+  border: none;
   border-radius: 5px;
   padding: 0 0.6em;
 }
@@ -76,7 +76,7 @@ input {
   border-radius: 0px 5px 5px 0px;
 }
 .left {
-   border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0px 0px 5px;
 }
 .active {
   cursor: default;

@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img v-bind:src="srcToImg" class="poster"/>
+    <img v-bind:src="srcToImg" class="poster" />
     <div>
       <span class="posterName">{{ name }}</span>
       <span class="year">{{ year }}</span>
@@ -13,7 +13,7 @@
 export default {
   name: "Card",
   props: {
-    name: String,    
+    name: String,
     genre: String,
     year: String,
     srcToImg: String

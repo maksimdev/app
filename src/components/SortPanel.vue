@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     onClick() {
-      console.log('click!', this);
+      console.log("click!", this);
     }
   }
 };
@@ -47,7 +47,7 @@ export default {
   border-radius: 0px 5px 5px 0px;
 }
 .left {
-   border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0px 0px 5px;
 }
 .active {
   cursor: default;
