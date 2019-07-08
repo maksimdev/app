@@ -26,7 +26,7 @@ export default {
   display: flex;
   width: 20em;
   flex-direction: column;
-  background: #6e6e6e;
+  background: #515151;
   color: #f4f4f4;
   padding: 1em;
 

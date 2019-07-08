@@ -1,10 +1,20 @@
 <template>
   <div class="SortPanel">
-    <span class="result">{{ result }} movie found</span>
+    <span class="result"><slot /> movie found</span>
     <div>
       <span class="sortBy">sort by</span>
-      <a class="button left active" @click="onClick">release date</a>
-      <a class="button right" @click="onClick">raiting</a>
+      <a
+        v-bind:class="[filter === 'releaseDate' ? 'active' : '']"
+        class="button left"
+        @click="() => toggleFilter('releaseDate')"
+        >release date</a
+      >
+      <a
+        v-bind:class="[filter === 'raiting' ? 'active' : '']"
+        class="button right"
+        @click="() => toggleFilter('raiting')"
+        >raiting</a
+      >
     </div>
   </div>
 </template>
@@ -12,12 +22,17 @@
 <script>
 export default {
   name: "SortPanel",
-  props: {
-    result: String
-  },
+  data: () => ({
+    filter: "releaseDate"
+  }),
   methods: {
-    onClick() {
-      console.log("click!", this);
+    toggleFilter(filter) {
+      if (filter !== this.filter) {
+        this.filter = filter;
+        this.$emit("filter", {
+          filter: this.filter
+        });
+      }
     }
   }
 };

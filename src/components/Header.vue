@@ -1,5 +1,6 @@
 <template>
   <div class="header">
+    <div class="title"><b>netflix</b>roulette</div>
     <h1>find your movie</h1>
     <div class="searchPanel">
       <input v-model="message" placeholder="Quentin Tarantino" />
@@ -7,8 +8,18 @@
     </div>
     <div>
       <span class="searchBy">search by</span>
-      <a class="button left active" @click="onClick">title</a>
-      <a class="button right" @click="onClick">gengre</a>
+      <a
+        v-bind:class="[searchBy === 'title' ? 'active' : '']"
+        class="button left"
+        @click="() => toggleFilter('title')"
+        >title</a
+      >
+      <a
+        v-bind:class="[searchBy === 'gengre' ? 'active' : '']"
+        class="button right"
+        @click="() => toggleFilter('gengre')"
+        >gengre</a
+      >
     </div>
   </div>
 </template>
@@ -17,14 +28,18 @@
 export default {
   name: "Header",
   data: () => ({
-    message: ""
+    message: "",
+    searchBy: "title"
   }),
   methods: {
     search() {
-      console.log("click search!", this);
+      console.log("click search!", this.message);
     },
-    onClick() {
-      console.log("click!", this);
+    toggleFilter(searchBy) {
+      if (searchBy !== this.searchBy) {
+        this.searchBy = searchBy;
+        console.log("click!", this.searchBy);
+      }
     }
   }
 };
@@ -32,23 +47,33 @@ export default {
 
 <style scoped lang="scss">
 .header {
+  background: #535353;
   padding: 0 5.3em;
   min-width: 560px;
+  height: 300px;
   text-transform: uppercase;
-  margin-bottom: 1em;
+  padding-top: 2em;
+
+  .title {
+    font-size: 1.2em;
+    color: #ff3434;
+    margin-bottom: 50px;
+    cursor: default;
+  }
+
+  .searchButton {
+    font-size: 1.2em;
+    cursor: pointer;
+    background: #555;
+    padding: 1em 0em;
+    width: 18%;
+    text-align: center;
+    background: #ff6f6f;
+    border-radius: 5px;
+    color: #fff;
+  }
 }
 h1 {
-}
-.searchButton {
-  font-size: 1.2em;
-  cursor: pointer;
-  background: #555;
-  padding: 1em 0em;
-  width: 18%;
-  text-align: center;
-  background: #ff6f6f;
-  border-radius: 5px;
-  color: #fff;
 }
 input {
   box-sizing: border-box;
@@ -69,7 +94,7 @@ input {
 }
 .button {
   cursor: pointer;
-  background: #555;
+  background: #6e6e6e;
   padding: 0.6em 1.2em;
 }
 .right {
