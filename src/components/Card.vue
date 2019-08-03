@@ -5,7 +5,7 @@
       <span class="posterName">{{ name }}</span>
       <span class="year">{{ year }}</span>
     </div>
-    <span class="genre">{{ genre }}</span>
+    <span class="genre">{{ allGenres }}</span>
   </div>
 </template>
 
@@ -14,9 +14,14 @@ export default {
   name: "Card",
   props: {
     name: String,
-    genre: String,
+    genres: Array,
     year: String,
     srcToImg: String
+  },
+  computed: {
+    allGenres: function() {
+      return this.genres.join(', ');
+    }
   }
 };
 </script>
@@ -39,14 +44,13 @@ export default {
     height: 25em;
     margin-bottom: 2em;
   }
-  .posterName {
-  }
   .year {
     padding: 0.2em 1em;
     border: 2px solid #f4f4f4;
     border-radius: 5px 5px 5px 5px;
   }
   .genre {
+    margin-top: 0.5em;
   }
 }
 </style>

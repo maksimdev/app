@@ -2,10 +2,10 @@
   <ul class="list">
     <li v-for="item in items" v-bind:key="item.id">
       <Card
-        :name="item.name"
-        :genre="item.genre"
-        :year="item.year"
-        :srcToImg="item.srcToImg"
+        :name="item.title"
+        :genres="item.genres"
+        :year="item.release_date"
+        :srcToImg="item.poster_path"
       />
     </li>
   </ul>
