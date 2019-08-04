@@ -44,8 +44,11 @@ export default {
     height: 25em;
     margin-bottom: 2em;
   }
+  .posterName {}
   .year {
-    padding: 0.2em 1em;
+    height: 1em;
+    white-space: nowrap;
+    padding: 0.1em 0.5em;
     border: 2px solid #f4f4f4;
     border-radius: 5px 5px 5px 5px;
   }

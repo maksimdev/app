@@ -3,7 +3,7 @@
     <div class="title"><b>netflix</b>roulette</div>
     <h1>find your movie</h1>
     <div class="searchPanel">
-      <input v-model="message" placeholder="Quentin Tarantino" />
+      <input v-model="message" v-on:keyup.enter="search" placeholder="Quentin Tarantino" />
       <a class="searchButton" @click="search">search</a>
     </div>
     <div>
@@ -15,9 +15,9 @@
         >title</a
       >
       <a
-        v-bind:class="[searchBy === 'gengre' ? 'active' : '']"
+        v-bind:class="[searchBy === 'genres' ? 'active' : '']"
         class="button right"
-        @click="() => toggleFilter('gengre')"
+        @click="() => toggleFilter('genres')"
         >gengre</a
       >
     </div>
@@ -33,12 +33,11 @@ export default {
   }),
   methods: {
     search() {
-      console.log("click search!", this.message);
+      this.$store.dispatch('SEARCH_MOVIES', { queryString: this.message, searchBy: this.searchBy });
     },
     toggleFilter(searchBy) {
       if (searchBy !== this.searchBy) {
         this.searchBy = searchBy;
-        console.log("click!", this.searchBy);
       }
     }
   }

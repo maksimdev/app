@@ -30,6 +30,12 @@ export const store = new Vuex.Store({
         "http://react-cdp-api.herokuapp.com/movies"
       );
       context.commit("SET_MOVIES", data.data);
+    },
+    SEARCH_MOVIES: async (context, payload) => {
+      let { data } = await Axios.get(
+        `http://react-cdp-api.herokuapp.com/movies?search=${payload.queryString}&searchBy=${payload.searchBy}`
+      );
+      context.commit("SET_MOVIES", data.data);
     }
   }
 });
