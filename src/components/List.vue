@@ -1,14 +1,12 @@
 <template>
-  <ul class="list">
-    <li v-for="item in items" v-bind:key="item.id">
-      <Card
-        :name="item.title"
-        :genres="item.genres"
-        :year="item.release_date"
-        :srcToImg="item.poster_path"
-      />
-    </li>
-  </ul>
+  <div>
+    <span v-if="countOfItmes">No films found</span>
+    <ul v-else class="list">
+      <li v-for="item in items" v-bind:key="item.id">
+        <Card :movie="item" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -21,15 +19,31 @@ export default {
   },
   props: {
     items: Array
+  },
+  computed: {
+    countOfItmes: function() {
+      return !this.items.length;
+    }
   }
 };
 </script>
 
 <style scoped lang="scss">
-.list {
+div {
+  display: flex;
   min-height: 400px;
-  margin: 0;
   background: #515151;
+}
+span {
+  color: #fff;
+  font-size: 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list {
+  margin: 0;
 }
 li {
   display: inline-block;

@@ -1,39 +1,72 @@
 <template>
   <div class="header">
-    <div class="title"><b>netflix</b>roulette</div>
-    <h1>find your movie</h1>
-    <div class="searchPanel">
-      <input v-model="message" v-on:keyup.enter="search" placeholder="Quentin Tarantino" />
-      <a class="searchButton" @click="search">search</a>
+    <div class="title">
+      <b>NETFLIX</b>ROULETTE
+      <a v-if="movieExist" @click="closeOverview" class="closeButton">
+        Search
+      </a>
     </div>
-    <div>
-      <span class="searchBy">search by</span>
-      <a
-        v-bind:class="[searchBy === 'title' ? 'active' : '']"
-        class="button left"
-        @click="() => toggleFilter('title')"
-        >title</a
-      >
-      <a
-        v-bind:class="[searchBy === 'genres' ? 'active' : '']"
-        class="button right"
-        @click="() => toggleFilter('genres')"
-        >gengre</a
-      >
+    <Overview v-if="movieExist" :movie="movieOverview" />
+    <div v-else class="search">
+      <h1>find your movie</h1>
+      <div class="searchPanel">
+        <input
+          v-model="queryString"
+          v-on:keyup.enter="search"
+          placeholder="Quentin Tarantino"
+        />
+        <a class="searchButton" @click="search">search</a>
+      </div>
+      <div>
+        <span class="searchBy">SEARCH BY</span>
+        <a
+          v-bind:class="[searchBy === 'title' ? 'active' : '']"
+          class="button left"
+          @click="() => toggleFilter('title')"
+        >
+          title
+        </a>
+        <a
+          v-bind:class="[searchBy === 'genres' ? 'active' : '']"
+          class="button right"
+          @click="() => toggleFilter('genres')"
+        >
+          gengre
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Overview from "./Overview";
+
 export default {
   name: "Header",
+  components: {
+    Overview
+  },
   data: () => ({
-    message: "",
+    queryString: "",
     searchBy: "title"
   }),
+  computed: {
+    movieExist: function() {
+      return this.$store.state.overview.title;
+    },
+    movieOverview: function() {
+      return this.$store.state.overview;
+    }
+  },
   methods: {
     search() {
-      this.$store.dispatch('SEARCH_MOVIES', { queryString: this.message, searchBy: this.searchBy });
+      this.$store.dispatch("SEARCH_MOVIES", {
+        queryString: this.queryString,
+        searchBy: this.searchBy
+      });
+    },
+    closeOverview() {
+      this.$store.commit("REMOVE_MOVIE_FROM_OVERVIEW");
     },
     toggleFilter(searchBy) {
       if (searchBy !== this.searchBy) {
@@ -49,8 +82,6 @@ export default {
   background: #535353;
   padding: 0 5.3em;
   min-width: 560px;
-  height: 300px;
-  text-transform: uppercase;
   padding-top: 2em;
 
   .title {
@@ -58,6 +89,10 @@ export default {
     color: #ff3434;
     margin-bottom: 50px;
     cursor: default;
+
+    .closeButton {
+      float: right;
+    }
   }
 
   .searchButton {
@@ -72,8 +107,7 @@ export default {
     color: #fff;
   }
 }
-h1 {
-}
+
 input {
   box-sizing: border-box;
   font-size: 2em;
@@ -84,6 +118,9 @@ input {
   border: none;
   border-radius: 5px;
   padding: 0 0.6em;
+}
+.search {
+  height: 300px;
 }
 .searchPanel {
   display: flex;

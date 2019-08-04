@@ -24,11 +24,11 @@ export default {
     Footer
   },
   created() {
-    this.$store.dispatch('GET_MOVIES');
+    this.$store.dispatch("GET_MOVIES");
   },
   computed: {
-    ...mapState(['movies']),
-    ...mapGetters(['countOfFilms']),
+    ...mapState(["movies"]),
+    ...mapGetters(["countOfFilms"]),
     sortByReleaseDate: function() {
       return this.$store.state.movies.sort((filmOne, filmTwo) => {
         if (new Date(filmOne.release_date) < new Date(filmTwo.release_date)) {
@@ -42,10 +42,10 @@ export default {
     },
     sortByRaiting: function() {
       return this.$store.state.movies.sort((filmOne, filmTwo) => {
-        if (filmOne.vote_average < filmTwo.vote_average) {
+        if (filmOne.vote_average > filmTwo.vote_average) {
           return -1;
         }
-        if (filmOne.vote_average > filmTwo.vote_average) {
+        if (filmOne.vote_average < filmTwo.vote_average) {
           return 1;
         }
         return 0;

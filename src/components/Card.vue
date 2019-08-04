@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
-    <img v-bind:src="srcToImg" class="poster" />
+  <div class="card" @click="setMovieForOverview">
+    <img v-bind:src="movie.poster_path" class="poster" />
     <div>
-      <span class="posterName">{{ name }}</span>
-      <span class="year">{{ year }}</span>
+      <span class="posterName">{{ movie.title }}</span>
+      <span class="year">{{ movie.release_date }}</span>
     </div>
     <span class="genre">{{ allGenres }}</span>
   </div>
@@ -13,14 +13,16 @@
 export default {
   name: "Card",
   props: {
-    name: String,
-    genres: Array,
-    year: String,
-    srcToImg: String
+    movie: Object
   },
   computed: {
     allGenres: function() {
-      return this.genres.join(', ');
+      return this.movie.genres.join(", ");
+    }
+  },
+  methods: {
+    setMovieForOverview() {
+      this.$store.commit("SET_MOVIE_FOR_OVERVIEW", this.movie);
     }
   }
 };
@@ -40,11 +42,9 @@ export default {
     justify-content: space-between;
   }
   .poster {
-    width: 100%;
     height: 25em;
     margin-bottom: 2em;
   }
-  .posterName {}
   .year {
     height: 1em;
     white-space: nowrap;

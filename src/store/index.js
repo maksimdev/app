@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    movies: []
+    movies: [],
+    overview: {}
   },
 
   getters: {
@@ -21,6 +22,12 @@ export const store = new Vuex.Store({
   mutations: {
     SET_MOVIES: (state, payload) => {
       state.movies = payload;
+    },
+    SET_MOVIE_FOR_OVERVIEW: (state, payload) => {
+      state.overview = payload;
+    },
+    REMOVE_MOVIE_FROM_OVERVIEW: state => {
+      state.overview = {};
     }
   },
 
@@ -33,7 +40,9 @@ export const store = new Vuex.Store({
     },
     SEARCH_MOVIES: async (context, payload) => {
       let { data } = await Axios.get(
-        `http://react-cdp-api.herokuapp.com/movies?search=${payload.queryString}&searchBy=${payload.searchBy}`
+        `http://react-cdp-api.herokuapp.com/movies?search=${
+          payload.queryString
+        }&searchBy=${payload.searchBy}`
       );
       context.commit("SET_MOVIES", data.data);
     }
