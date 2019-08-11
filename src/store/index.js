@@ -6,8 +6,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    movies: [],
-    overview: {}
+    movies: []
   },
 
   getters: {
@@ -40,12 +39,6 @@ export const store = new Vuex.Store({
   mutations: {
     SET_MOVIES: (state, payload) => {
       state.movies = payload;
-    },
-    SET_MOVIE_FOR_OVERVIEW: (state, payload) => {
-      state.overview = payload;
-    },
-    REMOVE_MOVIE_FROM_OVERVIEW: state => {
-      state.overview = {};
     }
   },
 

@@ -1,26 +1,48 @@
 <template>
   <div class="moviesCard">
-    <img v-bind:src="movie.poster_path" class="poster" />
+    <!-- {{ $route.params.id }}
+    <img v-bind:src="movieForOverview.poster_path" class="poster" />
     <div class="info">
       <div class="header">
-        <span class="title">{{ movie.title }}</span>
-        <div class="raiting">{{ movie.vote_average }}</div>
+        <span class="title">{{ movieForOverview.title }}</span>
+        <div class="raiting">{{ movieForOverview.vote_average }}</div>
       </div>
       <div class="timeline">
-        <span class="dateTime">{{ movie.release_date }} </span> year
-        <span class="dateTime">{{ movie.runtime }} </span> min
+        <span class="dateTime">{{ movieForOverview.release_date }} </span> year
+        <span class="dateTime">{{ movieForOverview.runtime }} </span> min
       </div>
-      <div class="description">{{ movie.overview }}</div>
-    </div>
+      <div class="description">{{ movieForOverview.overview }}</div>
+    </div> -->
   </div>
 </template>
 
 <script>
+//import { mapState } from "vuex";
+
+// const defaultMovie = {
+//   poster_path: "",
+//   title: "",
+//   vote_average: "",
+//   release_date: "",
+//   runtime: "",
+//   overview: ""
+// };
+
 export default {
-  name: "Overview",
-  props: {
-    movie: Object
-  }
+  name: "Overview"
+  // computed: {
+  //   ...mapState(["movies"]),
+  //   movieForOverview: function() {
+  //     //console.log('A: ', this.$router.params ? this.$router.params.id : '!!!');
+  //     return this.movies.find((m) => (m.id === 399055)) || defaultMovie;
+  //   }
+  //   movieForOverview: function() {
+  //     console.log('1:', this.$route.params.id);
+  //     console.log('2:',  this.movies);
+  //     console.log('3:',  this.movies.find(movie => movie.id === this.$router.params.id));
+  //     return this.$route.params.id;
+  //   },
+  // }
 };
 </script>
 

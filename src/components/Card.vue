@@ -1,12 +1,15 @@
 <template>
-  <div class="card" v-on:click="setMovieForOverview">
+  <router-link
+    class="card"
+    :to="{ path: `/overview/${movie.id}`, params: { id: movie.id } }"
+  >
     <img v-bind:src="movie.poster_path" class="poster" />
     <div>
       <span class="posterName">{{ movie.title }}</span>
       <span class="year">{{ movie.release_date }}</span>
     </div>
     <span class="genre">{{ allGenres }}</span>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -18,11 +21,6 @@ export default {
   computed: {
     allGenres: function() {
       return this.movie.genres.join(", ");
-    }
-  },
-  methods: {
-    setMovieForOverview() {
-      this.$store.commit("SET_MOVIE_FOR_OVERVIEW", this.movie);
     }
   }
 };
@@ -36,6 +34,10 @@ export default {
   background: #515151;
   color: #f4f4f4;
   padding: 1em;
+  text-decoration: none;
+  &:hover {
+    background: #515170;
+  }
 
   div {
     display: flex;
