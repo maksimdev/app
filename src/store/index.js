@@ -14,11 +14,29 @@ export const store = new Vuex.Store({
     countOfFilms: function(state) {
       return state.movies.length;
     },
-    MOVIES: state => {
-      return state.movies;
+    moviesSortedByReleaseDate: function(state) {
+      return state.movies.sort((filmOne, filmTwo) => {
+        if (new Date(filmOne.release_date) < new Date(filmTwo.release_date)) {
+          return 1;
+        }
+        if (new Date(filmOne.release_date) > new Date(filmTwo.release_date)) {
+          return -1;
+        }
+        return 0;
+      });
+    },
+    moviesSortedByRaiting: function(state) {
+      return state.movies.sort((filmOne, filmTwo) => {
+        if (filmOne.vote_average > filmTwo.vote_average) {
+          return -1;
+        }
+        if (filmOne.vote_average < filmTwo.vote_average) {
+          return 1;
+        }
+        return 0;
+      });
     }
   },
-
   mutations: {
     SET_MOVIES: (state, payload) => {
       state.movies = payload;

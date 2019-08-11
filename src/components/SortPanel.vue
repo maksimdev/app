@@ -6,14 +6,14 @@
       <a
         v-bind:class="[filter === 'releaseDate' ? 'active' : '']"
         class="button left"
-        @click="() => toggleFilter('releaseDate')"
+        v-on:click="() => toggleFilter('releaseDate')"
       >
         release date
       </a>
       <a
         v-bind:class="[filter === 'raiting' ? 'active' : '']"
         class="button right"
-        @click="() => toggleFilter('raiting')"
+        v-on:click="() => toggleFilter('raiting')"
       >
         raiting
       </a>

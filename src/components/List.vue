@@ -3,7 +3,7 @@
     <span v-if="countOfItmes">No films found</span>
     <ul v-else class="list">
       <li v-for="item in items" v-bind:key="item.id">
-        <Card :movie="item" />
+        <Card v-bind:movie="item" />
       </li>
     </ul>
   </div>

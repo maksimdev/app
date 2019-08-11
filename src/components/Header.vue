@@ -2,11 +2,11 @@
   <div class="header">
     <div class="title">
       <b>NETFLIX</b>ROULETTE
-      <a v-if="movieExist" @click="closeOverview" class="closeButton">
+      <a v-if="movieExist" v-on:click="closeOverview" class="closeButton">
         Search
       </a>
     </div>
-    <Overview v-if="movieExist" :movie="movieOverview" />
+    <Overview v-if="movieExist" v-bind:movie="movieOverview" />
     <div v-else class="search">
       <h1>find your movie</h1>
       <div class="searchPanel">
@@ -15,21 +15,21 @@
           v-on:keyup.enter="search"
           placeholder="Quentin Tarantino"
         />
-        <a class="searchButton" @click="search">search</a>
+        <a class="searchButton" v-on:click="search">search</a>
       </div>
       <div>
         <span class="searchBy">SEARCH BY</span>
         <a
           v-bind:class="[searchBy === 'title' ? 'active' : '']"
           class="button left"
-          @click="() => toggleFilter('title')"
+          v-on:click="() => toggleFilter('title')"
         >
           title
         </a>
         <a
           v-bind:class="[searchBy === 'genres' ? 'active' : '']"
           class="button right"
-          @click="() => toggleFilter('genres')"
+          v-on:click="() => toggleFilter('genres')"
         >
           gengre
         </a>
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import Overview from "./Overview";
 
 export default {
@@ -51,11 +53,12 @@ export default {
     searchBy: "title"
   }),
   computed: {
+    ...mapState(["overview"]),
     movieExist: function() {
-      return this.$store.state.overview.title;
+      return this.overview.title;
     },
     movieOverview: function() {
-      return this.$store.state.overview;
+      return this.overview;
     }
   },
   methods: {

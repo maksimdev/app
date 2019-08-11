@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Header />
-    <SortPanel @filter="onFilter">{{ countOfFilms }}</SortPanel>
-    <List :items="movies" />
+    <SortPanel v-on:filter="onFilter">{{ countOfFilms }}</SortPanel>
+    <List v-bind:items="movies" />
     <Footer />
   </div>
 </template>
@@ -28,37 +28,19 @@ export default {
   },
   computed: {
     ...mapState(["movies"]),
-    ...mapGetters(["countOfFilms"]),
-    sortByReleaseDate: function() {
-      return this.$store.state.movies.sort((filmOne, filmTwo) => {
-        if (new Date(filmOne.release_date) < new Date(filmTwo.release_date)) {
-          return 1;
-        }
-        if (new Date(filmOne.release_date) > new Date(filmTwo.release_date)) {
-          return -1;
-        }
-        return 0;
-      });
-    },
-    sortByRaiting: function() {
-      return this.$store.state.movies.sort((filmOne, filmTwo) => {
-        if (filmOne.vote_average > filmTwo.vote_average) {
-          return -1;
-        }
-        if (filmOne.vote_average < filmTwo.vote_average) {
-          return 1;
-        }
-        return 0;
-      });
-    }
+    ...mapGetters([
+      "countOfFilms",
+      "moviesSortedByReleaseDate",
+      "moviesSortedByRaiting"
+    ])
   },
   methods: {
     onFilter: function(data) {
       if (data.filter === "raiting") {
-        this.$store.state.movies = this.sortByRaiting;
+        this.$store.commit("SET_MOVIES", this.moviesSortedByReleaseDate);
       }
       if (data.filter === "releaseDate") {
-        this.$store.state.movies = this.sortByReleaseDate;
+        this.$store.commit("SET_MOVIES", this.moviesSortedByRaiting);
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="setMovieForOverview">
+  <div class="card" v-on:click="setMovieForOverview">
     <img v-bind:src="movie.poster_path" class="poster" />
     <div>
       <span class="posterName">{{ movie.title }}</span>
