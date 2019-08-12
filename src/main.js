@@ -4,6 +4,9 @@ import { store } from "./store";
 import Routes from "./router";
 import VueRouter from "vue-router";
 
+import focus from "./directives/focus";
+Vue.directive("focus", focus);
+
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);

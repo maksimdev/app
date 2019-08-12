@@ -1,6 +1,6 @@
 <template>
   <div class="moviesCard">
-    <!-- {{ $route.params.id }}
+    {{ $route.params.id }}
     <img v-bind:src="movieForOverview.poster_path" class="poster" />
     <div class="info">
       <div class="header">
@@ -12,37 +12,32 @@
         <span class="dateTime">{{ movieForOverview.runtime }} </span> min
       </div>
       <div class="description">{{ movieForOverview.overview }}</div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-//import { mapState } from "vuex";
+import { mapState } from "vuex";
 
-// const defaultMovie = {
-//   poster_path: "",
-//   title: "",
-//   vote_average: "",
-//   release_date: "",
-//   runtime: "",
-//   overview: ""
-// };
+const defaultMovie = {
+  poster_path: "",
+  title: "",
+  vote_average: "",
+  release_date: "",
+  runtime: "",
+  overview: ""
+};
 
 export default {
-  name: "Overview"
-  // computed: {
-  //   ...mapState(["movies"]),
-  //   movieForOverview: function() {
-  //     //console.log('A: ', this.$router.params ? this.$router.params.id : '!!!');
-  //     return this.movies.find((m) => (m.id === 399055)) || defaultMovie;
-  //   }
-  //   movieForOverview: function() {
-  //     console.log('1:', this.$route.params.id);
-  //     console.log('2:',  this.movies);
-  //     console.log('3:',  this.movies.find(movie => movie.id === this.$router.params.id));
-  //     return this.$route.params.id;
-  //   },
-  // }
+  name: "Overview",
+  computed: {
+    ...mapState(["movies"]),
+    movieForOverview: function() {
+      console.log('A: ', this.$router.params ? this.$router.params.id : '!!!');
+      //TypeError: Cannot read property 'id' of undefined
+      return this.movies.find((m) => (m.id === this.$router.params.id)) || defaultMovie;
+    }
+  }
 };
 </script>
 

@@ -3,6 +3,7 @@
     <h1>find your movie</h1>
     <div class="searchPanel">
       <input
+        v-focus
         v-model="queryString"
         v-on:keyup.enter="search"
         placeholder="Quentin Tarantino"
@@ -36,7 +37,8 @@ export default {
   name: "Search",
   data: () => ({
     queryString: "",
-    searchBy: "title"
+    searchBy: "title",
+    color: "#fff"
   }),
   methods: {
     search() {
