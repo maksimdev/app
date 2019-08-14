@@ -1,6 +1,5 @@
 <template>
   <div class="moviesCard">
-    {{ $route.params.id }}
     <img v-bind:src="movieForOverview.poster_path" class="poster" />
     <div class="info">
       <div class="header">
@@ -33,9 +32,9 @@ export default {
   computed: {
     ...mapState(["movies"]),
     movieForOverview: function() {
-      console.log('A: ', this.$router.params ? this.$router.params.id : '!!!');
-      //TypeError: Cannot read property 'id' of undefined
-      return this.movies.find((m) => (m.id === this.$router.params.id)) || defaultMovie;
+      return (
+        this.movies.find(m => m.id === +this.$route.params.id) || defaultMovie
+      );
     }
   }
 };
